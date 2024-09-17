@@ -1,0 +1,14 @@
+services:
+  php:
+    build:
+      context: context
+      network: host
+      args:
+        USERID: $USERID
+        USERNAME: $USERNAME
+        DOCKER_GROUP_ID: $DOCKER_GROUP_ID
+    network_mode: host
+    volumes:
+      - /home:/home
+      - /mnt:/mnt
+      - /run:/run

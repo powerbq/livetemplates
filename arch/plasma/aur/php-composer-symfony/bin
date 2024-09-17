@@ -1,0 +1,9 @@
+#!/bin/sh
+
+export ABSPATH=$(readlink -f $0)
+export ABSDIR=$(dirname $ABSPATH)
+export BIN=$(basename $0)
+
+. /$ABSDIR/start
+
+docker-compose --project-directory $ABSDIR exec $(printf " -e %s " $(env)) -w "$(pwd)" php $BIN $@

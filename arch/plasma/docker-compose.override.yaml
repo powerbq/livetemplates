@@ -1,0 +1,17 @@
+version: '3.6'
+
+services:
+  livearch-system:
+    build:
+      args:
+        - MIRROR_COUNTRY_CODE=UA
+    environment:
+      - AUR_PACKAGES=google-chrome oh-my-zsh-git slack-desktop teams-for-linux-bin teamviewer zoom php-composer-symfony
+
+  livearch-boot:
+    build:
+      args:
+        - MIRROR_COUNTRY_CODE=UA
+    environment:
+      - BOOT_PACKAGES=linux linux-firmware
+      - BOOT_SKIP_HOOKS=kms

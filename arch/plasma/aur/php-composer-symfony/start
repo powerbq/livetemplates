@@ -1,0 +1,7 @@
+#!/bin/sh
+
+export USERID=$(id -u)
+export USERNAME=$(whoami)
+export DOCKER_GROUP_ID=$(cat /etc/group | grep ^docker: | cut -d: -f3)
+
+docker-compose --project-directory $ABSDIR up --build -d > /dev/null 2>&1

@@ -1,0 +1,13 @@
+# Компоненты MATE
+depends+=(mate-system-monitor)
+
+# Компоненты PLASMA
+depends+=(plasma kde-system kde-utilities)
+
+# Компоненты из группы KDE-GRAPHICS
+depends+=(gwenview okular spectacle)
+depends+=(kdegraphics-thumbnailers)
+
+# Компоненты из группы KDE-MULTIMEDIA
+depends+=(k3b kamoso)
+depends+=(ffmpegthumbs)

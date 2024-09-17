@@ -1,0 +1,17 @@
+# Ядро и заголовки, прошивки
+depends+=(linux-firmware)
+
+# Пакеты для файловых систем
+depends+=(btrfs-progs cifs-utils dosfstools e2fsprogs exfat-utils ntfs-3g squashfs-tools)
+
+# LVM и RAID
+depends+=(lvm2 mdadm)
+
+# Базовые консольные утилиты и оболочки
+depends+=(atop bash busybox chntpw cpio curl debootstrap duperemove efibootmgr git htop iftop iotop iperf jq libisoburn mc mtr nano pv rsync screen sqlite sudo vi wget xxd zsh)
+
+# Системные службы
+depends+=(irqbalance openssh openvpn)
+
+# Зависимости для Python
+depends+=(python-pip)

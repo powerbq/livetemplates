@@ -1,0 +1,65 @@
+pkgname=php-composer-symfony
+pkgver=8.3
+pkgrel=1
+arch=(any)
+options=(!strip)
+depends=(
+	docker
+	docker-compose
+)
+conflicts=(
+	php
+	composer
+	symfony-cli
+)
+source=(
+	docker-compose.yaml
+	start
+	bin
+	Dockerfile
+	php-modules.sh
+	composer.sh
+	symfony-cli.sh
+	docker.sh
+	boot.sh
+)
+
+sha256sums+=(
+	SKIP
+	SKIP
+	SKIP
+	SKIP
+	SKIP
+	SKIP
+	SKIP
+	SKIP
+	SKIP
+)
+
+_installdir="/usr/local/share/$pkgname"
+
+package() {
+	cd "${srcdir}"
+
+	install -d -m 755 "${pkgdir}${_installdir}"
+	install -d -m 755 "${pkgdir}${_installdir}/context"
+	install -d -m 755 "${pkgdir}/usr/local/bin"
+
+	install -m 644 docker-compose.yaml "${pkgdir}${_installdir}/"
+	install -m 644 start "${pkgdir}${_installdir}/"
+
+	install -m 644 Dockerfile "${pkgdir}${_installdir}/context/"
+	install -m 755 php-modules.sh "${pkgdir}${_installdir}/context/"
+	install -m 755 composer.sh "${pkgdir}${_installdir}/context/"
+	install -m 755 symfony-cli.sh "${pkgdir}${_installdir}/context/"
+	install -m 755 docker.sh "${pkgdir}${_installdir}/context/"
+	install -m 755 boot.sh "${pkgdir}${_installdir}/context/"
+
+	install -m 755 bin "${pkgdir}${_installdir}/php"
+	install -m 755 bin "${pkgdir}${_installdir}/composer"
+	install -m 755 bin "${pkgdir}${_installdir}/symfony"
+
+	ln -sr "${pkgdir}${_installdir}/php" "${pkgdir}/usr/local/bin/"
+	ln -sr "${pkgdir}${_installdir}/composer" "${pkgdir}/usr/local/bin/"
+	ln -sr "${pkgdir}${_installdir}/symfony" "${pkgdir}/usr/local/bin/"
+}
