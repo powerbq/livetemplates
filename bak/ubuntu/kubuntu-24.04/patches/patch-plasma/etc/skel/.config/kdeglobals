@@ -1,0 +1,7 @@
+[General]
+BrowserApplication=google-chrome.desktop
+TerminalApplication=terminator
+TerminalService=terminator.desktop
+
+[KDE]
+LookAndFeelPackage=org.kubuntu.desktop

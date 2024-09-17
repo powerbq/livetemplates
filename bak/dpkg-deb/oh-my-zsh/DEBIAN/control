@@ -1,0 +1,6 @@
+Package: oh-my-zsh
+Version: 1
+Maintainer: Kyrylo Baryshev
+Architecture: amd64
+Description: Best shell ever
+Depends: zsh

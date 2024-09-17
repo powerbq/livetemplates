@@ -1,0 +1,6 @@
+version: '3.6'
+
+services:
+  livearch:
+    environment:
+      - BOOT_ADD_HOOKS=lvm2
