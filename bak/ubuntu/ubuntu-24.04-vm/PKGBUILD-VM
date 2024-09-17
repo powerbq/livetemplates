@@ -1,0 +1,5 @@
+
+# VM
+depends+=(dnsmasq fail2ban motion nginx wireguard-tools)
+depends+=(ffmpeg rclone syncthing)
+depends+=(gunicorn python3-flask python3-lupa python3-numpy python3-pyftpdlib python3-pyquery python3-requests python3-websocket)
