@@ -1,0 +1,23 @@
+depends+=(
+	gunicorn
+	python3-openai
+	python3-celery
+	python3-django
+	python3-django-redis
+	python3-dotenv
+	python3-flask
+	python3-lupa
+	python3-numpy
+	python3-psycopg2
+	python3-pyftpdlib
+	python3-pyquery
+	python3-requests
+	python3-soundfile
+)
+
+depends+=(
+	ansible
+	postgresql-16
+	rabbitmq-server
+	redis-server
+)

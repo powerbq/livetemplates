@@ -1,0 +1,8 @@
+#!/bin/sh
+
+set -e
+
+cd /usr/share/$DPKG_MAINTSCRIPT_PACKAGE
+make dkms_remove || true
+
+exit 0

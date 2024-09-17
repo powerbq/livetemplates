@@ -1,0 +1,8 @@
+[Layout]
+DisplayNames=,,
+LayoutList=us,ru,ua
+Options=grp:caps_select
+ResetOldOptions=true
+SwitchMode=Window
+Use=true
+VariantList=,,
