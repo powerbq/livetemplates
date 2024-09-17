@@ -1,0 +1,9 @@
+services:
+  ubuntu:
+    build:
+      context: .
+      network: host
+    network_mode: host
+    volumes:
+      - ./:/usr/local/src/build
+    entrypoint: /usr/local/src/build/entrypoint.sh

@@ -1,0 +1,4 @@
+https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb|google-chrome.deb
+https://downloads.slack-edge.com/desktop-releases/linux/x64/4.39.95/slack-desktop-4.39.95-amd64.deb|slack-desktop.deb
+https://github.com/symfony-cli/symfony-cli/releases/download/v5.11.0/symfony-cli_5.11.0_amd64.deb|symfony-cli.deb
+https://github.com/IsmaelMartinez/teams-for-linux/releases/download/v1.13.0/teams-for-linux_1.13.0_amd64.deb|teams-for-linux.deb

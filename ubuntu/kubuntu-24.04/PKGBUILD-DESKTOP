@@ -1,0 +1,42 @@
+
+# Сборка пакетов
+depends+=(build-essential)
+
+# Network Manager
+depends+=(network-manager network-manager-pptp network-manager-openvpn)
+
+# Другие службы
+depends+=(syncthing)
+
+# Мультимедийные пакеты
+depends+=(pulseaudio-utils)
+
+# Плееры и просмотрщики
+depends+=(audacious vlc)
+
+# Студия
+depends+=(audacity blender gimp obs-studio shotcut)
+
+# Интернет пакеты
+depends+=(filezilla qbittorrent torbrowser-launcher)
+
+# Другие программы
+depends+=(geany gparted keepassxc)
+
+# Удаленный рабочий стол
+depends+=(freerdp2-x11 tigervnc-viewer)
+
+# Разработка
+depends+=(nodejs npm)
+
+# Утилиты для доступа к базам данных
+depends+=(mariadb-client)
+
+# Android
+depends+=(adb fastboot)
+
+# QEMU
+depends+=(ovmf qemu-system-x86)
+
+# Symfony CLI cert helper
+depends+=(libnss3-tools)
