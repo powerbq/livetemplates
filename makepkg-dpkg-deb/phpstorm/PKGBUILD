@@ -1,0 +1,40 @@
+pkgname=phpstorm
+pkgver=2025.3.1
+pkgrel=1
+arch=(any)
+
+pkgdesc="The PHP IDE that makes you productive"
+
+source=(
+	control
+	https://download.jetbrains.com/webide/PhpStorm-$pkgver.tar.gz
+)
+sha256sums=(
+	e1c8802e60589fd47c32b43794b787f6c860cb8d55babe5a1f75678670671fbd
+	fd8937ab6b79605cefc9917ffe6a08e05a6b7cc0256fa2178623d24ec322fa29
+)
+
+package() {
+	mkdir -m 755 -p "$pkgdir/usr/share"
+	cp -a "$srcdir/PhpStorm-"*'/' "$pkgdir/usr/share/$pkgname/"
+
+	mkdir -m 755 -p "$pkgdir/usr/bin"
+	ln -s ../share/$pkgname/bin/phpstorm "$pkgdir/usr/bin/$pkgname"
+
+	mkdir -m 755 -p "$pkgdir/usr/share/applications"
+
+	unzip -qou "$srcdir/PhpStorm-"*"/lib/app.jar" entry.desktop
+	sed -i 's/\$NAME\$/PhpStorm/' entry.desktop
+	sed -i "s/\\\$ICON\\\$/$pkgname/" entry.desktop
+	sed -i "s/\\\$SCRIPT\\\$/$pkgname/" entry.desktop
+	sed -i "s/\\\$COMMENT\\\$/$pkgdesc/" entry.desktop
+	sed -i "s/\\\$WM_CLASS\\\$/$pkgname/" entry.desktop
+	install -D -m644 "$srcdir/entry.desktop" "$pkgdir/usr/share/applications/$pkgname.desktop"
+
+	mkdir -m 755 -p "$pkgdir/usr/share/pixmaps"
+	install -D -m644 "$srcdir/PhpStorm-"*"/bin/phpstorm.svg" "$pkgdir/usr/share/pixmaps/$pkgname.svg"
+
+	makedeb
+}
+
+source ../func

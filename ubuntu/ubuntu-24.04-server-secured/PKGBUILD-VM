@@ -1,0 +1,3 @@
+# VM
+depends+=(fail2ban iptables-persistent motion nginx wireguard-tools)
+depends+=(certbot rclone syncthing)

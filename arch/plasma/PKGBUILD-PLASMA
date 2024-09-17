@@ -1,0 +1,5 @@
+# Компоненты PLASMA
+depends+=(plasma kde-system kde-utilities)
+
+# Компоненты из группы KDE-GRAPHICS
+depends+=(gwenview krita okular)

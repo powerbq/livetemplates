@@ -1,0 +1,40 @@
+pkgname=pycharm-community
+pkgver=2025.2.5
+pkgrel=1
+arch=(any)
+
+pkgdesc="The only Python IDE you need"
+
+source=(
+	control
+	https://download.jetbrains.com/python/pycharm-community-$pkgver.tar.gz
+)
+sha256sums=(
+	e1c8802e60589fd47c32b43794b787f6c860cb8d55babe5a1f75678670671fbd
+	7f49a014f53f0f6f7c46f6710b131f390302287f4046b606331d88081cdb551f
+)
+
+package() {
+	mkdir -m 755 -p "$pkgdir/usr/share"
+	cp -a "$srcdir/pycharm-community-"*'/' "$pkgdir/usr/share/$pkgname/"
+
+	mkdir -m 755 -p "$pkgdir/usr/bin"
+	ln -s ../share/$pkgname/bin/pycharm "$pkgdir/usr/bin/$pkgname"
+
+	mkdir -m 755 -p "$pkgdir/usr/share/applications"
+
+	unzip -qou "$srcdir/pycharm-community-"*"/lib/app-client.jar" entry.desktop
+	sed -i 's/\$NAME\$/PyCharm Community Edition/' entry.desktop
+	sed -i "s/\\\$ICON\\\$/$pkgname/" entry.desktop
+	sed -i "s/\\\$SCRIPT\\\$/$pkgname/" entry.desktop
+	sed -i "s/\\\$COMMENT\\\$/$pkgdesc/" entry.desktop
+	sed -i "s/\\\$WM_CLASS\\\$/$pkgname/" entry.desktop
+	install -D -m644 "$srcdir/entry.desktop" "$pkgdir/usr/share/applications/$pkgname.desktop"
+
+	mkdir -m 755 -p "$pkgdir/usr/share/pixmaps"
+	install -D -m644 "$srcdir/pycharm-community-"*"/bin/pycharm.svg" "$pkgdir/usr/share/pixmaps/$pkgname.svg"
+
+	makedeb
+}
+
+source ../func
