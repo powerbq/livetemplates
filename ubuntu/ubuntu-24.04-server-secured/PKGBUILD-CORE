@@ -1,0 +1,17 @@
+# Ядро и заголовки, прошивки
+depends+=(linux-firmware)
+
+# Пакеты для файловых систем
+depends+=(btrfs-progs dosfstools e2fsprogs ntfs-3g squashfs-tools)
+
+# LVM
+depends+=(lvm2)
+
+# Базовые консольные утилиты и оболочки
+depends+=(bash busybox cpio efibootmgr htop jq mc nano pv rsync screen sqlite3 sudo xxd)
+
+# Системные службы
+depends+=(openssh-server openvpn)
+
+# Зависимости для Python
+depends+=(python3-pip)

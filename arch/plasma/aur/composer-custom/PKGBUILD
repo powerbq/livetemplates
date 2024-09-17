@@ -1,0 +1,36 @@
+pkgname=(
+	'composer-custom'
+)
+pkgver=2.8.2
+pkgrel=1
+arch=('x86_64')
+depends=(
+	'php-custom'
+)
+makedepends=(
+)
+conflicts=(
+	'composer'
+)
+source=(
+	composer-${pkgver}.phar::https://getcomposer.org/download/${pkgver}/composer.phar
+)
+sha256sums=(
+	$(curl -L https://getcomposer.org/download/${pkgver}/composer.phar.sha256sum | awk '{print $1}')
+)
+
+pkgver() {
+	./composer.phar -V | grep -Po ' version .+' | awk '{print $2}' | head -n 1
+}
+
+prepare() {
+	cat composer-${pkgver}.phar > composer.phar
+
+	chmod +x composer.phar
+
+	./composer.phar self-update
+}
+
+package() {
+	install -Dm 755 composer.phar ${pkgdir}/usr/bin/composer
+}
