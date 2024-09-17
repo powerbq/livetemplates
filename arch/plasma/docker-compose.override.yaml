@@ -1,0 +1,7 @@
+version: '3.6'
+
+services:
+  livearch:
+    environment:
+      - AUR_PACKAGES=c-client php-custom php-custom-extras composer-custom symfony-cli-bin nvm google-chrome oh-my-zsh-git slack-desktop teams-for-linux-bin teamviewer anydesk-bin zoom moonlight-qt-bin sunshine-bin
+      - BOOT_ADD_HOOKS=encrypt,lvm2

@@ -1,0 +1,5 @@
+
+# VM
+depends+=(fail2ban motion nginx wireguard-tools)
+depends+=(certbot rclone syncthing)
+depends+=(gunicorn python3-flask)
