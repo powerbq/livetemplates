@@ -1,0 +1,65 @@
+# LibInput optional deps
+depends+=(python-libevdev python-pyudev)
+
+# Sound
+depends+=(sof-firmware)
+
+# Сборка пакетов
+depends+=(base-devel)
+
+# Network Manager
+depends+=(networkmanager networkmanager-openvpn networkmanager-pptp)
+
+# Docker
+depends+=(docker docker-buildx docker-compose)
+
+# Управление питанием
+depends+=(tlp)
+
+# Другие службы
+depends+=(syncthing)
+
+# Алгоритмы архивации и архиваторы командной строки
+depends+=(p7zip zip unzip unrar pigz)
+
+# Мультимедийные пакеты
+depends+=(pavucontrol-qt)
+
+# Плееры и просмотрщики
+depends+=(elisa vlc)
+
+# Студия
+depends+=(audacity blender gimp obs-studio pinta shotcut)
+
+# Интернет пакеты
+depends+=(chromium discord firefox firefox-ublock-origin filezilla qbittorrent thunderbird telegram-desktop torbrowser-launcher)
+
+# Офисные программы
+depends+=(libreoffice-fresh)
+
+# Другие программы
+depends+=(geany gparted keepassxc)
+
+# Удаленный рабочий стол
+depends+=(freerdp tigervnc)
+
+# Разработка
+depends+=(aws-cli)
+depends+=(helm kubectl minikube skaffold)
+depends+=(nodejs npm)
+depends+=(mono)
+
+# Java
+depends+=(java-runtime-common)
+
+# Утилиты для доступа к базам данных
+depends+=(mariadb-clients)
+
+# Android
+depends+=(android-tools)
+
+# Виртуализация
+depends+=(qemu ovmf)
+
+# Игры
+depends+=(openmw steam steam-native-runtime)

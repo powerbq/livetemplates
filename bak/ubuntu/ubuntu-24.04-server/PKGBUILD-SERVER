@@ -1,0 +1,2 @@
+# Server
+depends+=(dnsmasq fail2ban mysql-client strongswan tinc wireguard-tools)
