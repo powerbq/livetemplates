@@ -1,0 +1,108 @@
+pkgname=(
+	'php-custom'
+)
+pkgver=8.3.10
+pkgrel=1
+arch=(
+	'x86_64'
+)
+depends=(
+)
+makedepends=(
+	'libpng'
+	'oniguruma'
+	'libzip'
+)
+conflicts=(
+	'php'
+)
+source=(
+	"https://php.net/distributions/php-${pkgver}.tar.xz"
+)
+sha256sums=(
+	'a0f2179d00931fe7631a12cbc3428f898ca3d99fe564260c115af381d2a1978d'
+)
+options=(
+	'!emptydirs'
+)
+
+cpucount=$(nproc)
+
+modules() {
+	echo openssl # for composer
+
+	# composer dependencies
+	echo amqp
+	echo apcu
+	echo curl
+	echo event
+	echo exif
+	echo gd
+	echo imap
+	echo intl
+	echo mailparse
+	echo mysqli
+	echo readline
+	echo redis
+	echo soap
+	echo zip
+	echo zlib
+
+	# other dependencies
+	echo pdo_mysql
+
+	# for pecl modules
+	echo sockets
+	echo mbstring
+}
+
+configuration() {
+	for MODULE in $(modules)
+	do
+		echo --enable-$MODULE
+		echo --with-$MODULE
+	done
+
+	# for imap
+	echo --with-kerberos
+	echo --with-imap-ssl
+
+	# for fpm
+	echo --enable-fpm
+
+	# rest is for arch linux
+	echo --prefix=/usr
+	echo --sbindir=/usr/bin
+	echo --sysconfdir=/etc/php
+	echo --localstatedir=/var
+
+	echo --with-layout=GNU
+
+	echo --with-config-file-path=/etc/php
+	echo --with-config-file-scan-dir=/etc/php/conf.d
+	echo --disable-rpath
+
+	echo --mandir=/usr/share/man
+}
+
+prepare() {
+	cd "${srcdir}/php-${pkgver}"
+
+	./buildconf
+
+	./configure $(configuration)
+}
+
+build() {
+	cd "${srcdir}/php-${pkgver}"
+
+	make -j ${cpucount}
+}
+
+package() {
+	cd "${srcdir}/php-${pkgver}"
+
+	make -j 1 INSTALL_ROOT="${pkgdir}" install
+
+	install -D -m644 php.ini-development "${pkgdir}/etc/php/php.ini"
+}
