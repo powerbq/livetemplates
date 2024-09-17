@@ -1,0 +1,7 @@
+[terminator.desktop]
+_k_friendly_name=Terminator
+_launch=Ctrl+Alt+T,none,Terminator
+
+[KDE Keyboard Layout Switcher]
+Switch keyboard layout to English (US)=Ctrl+(,none,Сменить раскладку клавиатуры на English (US)
+Switch keyboard layout to Russian=Ctrl+),none,Сменить раскладку клавиатуры на Russian
