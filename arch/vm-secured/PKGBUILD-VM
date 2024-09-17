@@ -1,0 +1,23 @@
+# Сборка пакетов
+depends+=(base-devel)
+
+# Docker
+depends+=(docker docker-buildx docker-compose fuse-overlayfs)
+
+# Podman
+depends+=(podman podman-compose)
+
+# Другие службы
+depends+=(fail2ban motion nginx syncthing wireguard-tools)
+
+# Утилиты
+depends+=(certbot ffmpeg gunicorn rclone)
+
+# Алгоритмы архивации и архиваторы командной строки
+depends+=(p7zip zip unzip unrar pigz)
+
+# Утилиты для доступа к базам данных
+depends+=(mariadb-clients postgresql-libs)
+
+# Python
+depends+=(python-flask python-flask-caching python-flask-migrate python-flask-sqlalchemy python-lupa python-numpy python-pika python-psycopg2 python-pyftpdlib python-pymysql python-pyquery python-redis python-requests python-websocket-client)

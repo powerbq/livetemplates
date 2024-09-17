@@ -1,0 +1,7 @@
+version: '3.6'
+
+services:
+  livearch:
+    environment:
+      - AUR_PACKAGES=python-flask-httpauth python-pydub
+      - BOOT_ADD_HOOKS=encrypt,lvm2

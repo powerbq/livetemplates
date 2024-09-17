@@ -1,0 +1,7 @@
+
+# NAS
+depends+=(network-manager)
+depends+=(apcupsd samba syncthing)
+
+# Сборка
+depends+=(php)
