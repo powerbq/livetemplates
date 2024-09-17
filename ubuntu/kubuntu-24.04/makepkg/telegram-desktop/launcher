@@ -1,0 +1,15 @@
+#!/bin/sh
+
+APPDIR=$HOME/.local/share/TelegramDesktop
+
+mkdir -p $APPDIR
+
+for BINARY in Telegram Updater
+do
+	if ! test -f $APPDIR/$BINARY
+	then
+		cp -a /usr/share/telegram-desktop/$BINARY $APPDIR/$BINARY
+	fi
+done
+
+$APPDIR/Telegram $@

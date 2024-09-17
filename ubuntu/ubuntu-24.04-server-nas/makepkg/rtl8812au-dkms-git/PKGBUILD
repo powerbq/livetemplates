@@ -1,0 +1,32 @@
+pkgname=rtl8812au-dkms-git
+pkgver=1
+pkgrel=1
+arch=(any)
+
+pkgdesc="Wireless device driver"
+
+source=(
+	git+https://github.com/aircrack-ng/rtl8812au.git
+	control
+	postinst
+	prerm
+)
+sha256sums=(
+	SKIP
+	cc62a9e2d55c4e60fc9b08714232beb1e1f2c9a7c7cdd53618ecf65aebeaed63
+	a99ab9ed84ad38384fc682303099144844dbf515bbe63c8e754e8e4e449b0cb1
+	4bbc9db2616a17376fd6c66e7c96ef66955281750dd8ceb7e8194b768f3be12e
+)
+
+basename=rtl8812au
+
+package() {
+	cd "${srcdir}/${basename}"
+
+	mkdir -p ${pkgdir}/usr/share/$pkgname
+	cp -a ./. ${pkgdir}/usr/share/$pkgname/
+
+	makedeb
+}
+
+source ../func

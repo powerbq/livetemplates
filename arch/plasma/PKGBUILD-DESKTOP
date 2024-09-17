@@ -1,0 +1,38 @@
+# Sound
+depends+=(sof-firmware)
+
+# Network Manager
+depends+=(networkmanager networkmanager-openvpn)
+
+# Docker
+depends+=(docker docker-buildx docker-compose)
+
+# Другие службы
+depends+=(syncthing)
+
+# Алгоритмы архивации и архиваторы командной строки
+depends+=(p7zip zip unzip unrar pigz)
+
+# Плееры и просмотрщики
+depends+=(vlc vlc-plugin-ffmpeg)
+
+# Интернет пакеты
+depends+=(telegram-desktop)
+
+# Офисные программы
+depends+=(libreoffice-fresh)
+
+# Другие программы
+depends+=(geany gparted keepassxc)
+
+# Удаленный рабочий стол
+depends+=(freerdp tigervnc)
+
+# IDE
+depends+=(pycharm-community-edition)
+
+# Development
+depends+=(aws-cli-v2 github-cli helm k9s kubectl minikube skaffold)
+
+# LibInput optional deps
+depends+=(python-libevdev python-pyudev python-yaml)

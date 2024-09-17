@@ -1,0 +1,7 @@
+version: '3.6'
+
+services:
+  livearch:
+    environment:
+      - AUR_PACKAGES=c-client php-custom php-custom-extras composer-custom symfony-cli-bin google-chrome oh-my-zsh-git slack-desktop-wayland teams-for-linux-bin yp-tools anydesk-bin phpstorm
+      - BOOT_ADD_HOOKS=lvm2

@@ -1,0 +1,4 @@
+/pkg/
+/src/
+/awscli-exe-linux-*
+/*.deb

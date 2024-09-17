@@ -1,0 +1,5 @@
+[General]
+BrowserApplication=google-chrome.desktop
+
+[KDE]
+LookAndFeelPackage=org.kubuntu.desktop

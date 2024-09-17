@@ -1,0 +1,17 @@
+# Network Manager
+depends+=(network-manager network-manager-openvpn)
+
+# Другие службы
+depends+=(syncthing)
+
+# Плееры и просмотрщики
+depends+=(vlc)
+
+# Другие программы
+depends+=(geany gparted keepassxc)
+
+# Удаленный рабочий стол
+depends+=(freerdp2-x11 tigervnc-viewer)
+
+# Автоматизация управления устройствами ввода
+depends+=(libinput-tools)

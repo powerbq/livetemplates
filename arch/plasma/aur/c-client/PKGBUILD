@@ -1,0 +1,27 @@
+pkgname=c-client
+pkgver=2007f
+pkgrel=1
+arch=(
+	'x86_64'
+)
+depends=(
+)
+source=(
+	'c-client.deb::http://mirrors.kernel.org/ubuntu/pool/universe/u/uw-imap/libc-client2007e_2007f~dfsg-7build3_amd64.deb'
+	'c-client-dev.deb::http://mirrors.kernel.org/ubuntu/pool/universe/u/uw-imap/libc-client2007e-dev_2007f~dfsg-7build3_amd64.deb'
+)
+sha256sums=(
+	'3ddfe924c8462a40bbd1f23579a14d91118310ec0b4585effa58c272bbdd7ef3'
+	'bf2e73908d7b6600c3d8079dc4194cd570aec3819356c8bfc120d88969acc212'
+)
+
+prepare() {
+	bsdtar -xpf c-client.deb
+	bsdtar -xpf data.tar.*
+	bsdtar -xpf c-client-dev.deb
+	bsdtar -xpf data.tar.*
+}
+
+package() {
+	cp -a usr/. ${pkgdir}/usr/
+}

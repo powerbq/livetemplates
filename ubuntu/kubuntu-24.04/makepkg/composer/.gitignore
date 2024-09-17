@@ -1,0 +1,4 @@
+/pkg/
+/src/
+/composer-*.phar
+/*.deb

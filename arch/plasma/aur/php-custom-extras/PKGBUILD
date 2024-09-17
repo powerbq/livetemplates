@@ -1,0 +1,113 @@
+pkgname=(
+	'php-custom-extras'
+)
+pkgver=8.4.10
+pkgrel=1
+arch=(
+	'x86_64'
+)
+depends=(
+	'librabbitmq-c'
+	'php-custom'
+)
+makedepends=(
+)
+options=(
+	'!lto'
+	'!debug'
+)
+
+cpucount=$(nproc)
+
+source=(
+	'http://pecl.php.net/get/amqp-2.1.1.tgz'
+	'http://pecl.php.net/get/apcu-5.1.24.tgz'
+	'http://pecl.php.net/get/event-3.1.4.tgz'
+	'http://pecl.php.net/get/mailparse-3.1.8.tgz'
+	'http://pecl.php.net/get/redis-6.1.0.tgz'
+	'http://pecl.php.net/get/xdebug-3.4.5.tgz'
+	'http://pecl.php.net/get/imap-1.0.3.tgz'
+)
+
+sha256sums=(
+	'c9b36f10c2e7b7da472440e21c35655c3bf41983b99bf1e438eac7d5bb1c2b45'
+	'5c28a55b27082c69657e25b7ecf553e2cf6b74ec3fa77d6b76f4fb982e001e43'
+	'5c4caa73bc2dceee31092ff9192139df28e9a80f1147ade0dfe869db2e4ddfd3'
+	'59beab4ef851770c495ba7a0726ab40e098135469a11d9c8e665b089c96efc2f'
+	'f10405f639fe415e9ed4ec99538e72c90694d8dbd62868edcfcd6a453466b48c'
+	'f58442306ce55fe3b811c31759a247242989164f2a7933f05c8d59b06665b9c9'
+	'0c2c0b1f94f299004be996b85a424e3d11ff65ac0a3c980db3213289a4a3faaf'
+)
+
+modules() {
+	for SOURCE in ${source[*]}
+	do
+		echo $(basename $SOURCE | sed 's/\.tgz$//')
+	done
+}
+
+prepare() {
+	cd "${srcdir}"
+	cd amqp-*/
+	echo "extension=amqp" | tee php.ini
+	phpize
+	./configure
+
+	cd "${srcdir}"
+	cd apcu-*/
+	echo "extension=apcu" | tee php.ini
+	phpize
+	./configure
+
+	cd "${srcdir}"
+	cd event-*/
+	echo "extension=event" | tee php.ini
+	phpize
+	./configure --with-event-core --with-event-extra
+
+	cd "${srcdir}"
+	cd mailparse-*/
+	echo "extension=mailparse" | tee php.ini
+	phpize
+	./configure
+
+	cd "${srcdir}"
+	cd redis-*/
+	echo "extension=redis" | tee php.ini
+	phpize
+	./configure
+
+	cd "${srcdir}"
+	cd xdebug-*/
+	echo "zend_extension=xdebug" | tee php.ini
+	phpize
+	./configure
+
+	cd "${srcdir}"
+	cd imap-*/
+	echo "extension=imap" | tee php.ini
+	phpize
+	./configure --with-kerberos --with-imap-ssl
+}
+
+build() {
+	for PECLMODULE in $(modules)
+	do
+		cd "${srcdir}/${PECLMODULE}"
+
+		make -j ${cpucount}
+	done
+}
+
+package() {
+	for PECLMODULE in $(modules)
+	do
+		cd "${srcdir}/${PECLMODULE}"
+
+		make INSTALL_ROOT="${pkgdir}" install
+
+		install -Dm 644 php.ini "$pkgdir/etc/php/conf.d/${PECLMODULE}.ini"
+
+		cd ..
+	done
+}

@@ -1,0 +1,4 @@
+# Сборка себе подобных
+depends+=(curl git)
+depends+=(debootstrap)
+depends+=(makepkg libarchive-tools)

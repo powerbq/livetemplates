@@ -1,0 +1,35 @@
+pkgname=composer
+pkgver=2.9.3
+pkgrel=1
+arch=(any)
+
+pkgdesc="Dependency Manager for PHP"
+
+source=(
+	control
+	composer-$pkgver.phar::https://getcomposer.org/download/$pkgver/composer.phar
+)
+sha256sums=(
+	e1c8802e60589fd47c32b43794b787f6c860cb8d55babe5a1f75678670671fbd
+	3b3f9503a2d46590170e45edd29734197e797cea545b396d0b2823cac8ef4643
+)
+
+latestver() {
+	install -D -m 755 "$srcdir/composer-$pkgver.phar" "$srcdir/composer-latest.phar"
+	php "$srcdir/composer-latest.phar" self-update 2>&1 | grep -Po ' version .+' | awk '{print $2}' | head -n 1
+	rm "$srcdir/composer-latest.phar"
+}
+
+build() {
+	echo "package version: $pkgver"
+	echo "latest version: $(latestver)"
+}
+
+package() {
+	mkdir -m 755 -p "$pkgdir/usr/bin"
+	install -D -m755 "$srcdir/composer-$pkgver.phar" "$pkgdir/usr/bin/$pkgname"
+
+	makedeb
+}
+
+source ../func

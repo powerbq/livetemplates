@@ -1,0 +1,25 @@
+pkgname=debs-download
+pkgver=1
+pkgrel=1
+arch=(any)
+
+source=(
+	https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_143.0.7499.169-1_amd64.deb
+	https://downloads.slack-edge.com/desktop-releases/linux/x64/4.47.69/slack-desktop-4.47.69-amd64.deb
+	https://github.com/symfony-cli/symfony-cli/releases/download/v5.16.1/symfony-cli_5.16.1_amd64.deb
+	https://github.com/IsmaelMartinez/teams-for-linux/releases/download/v2.6.19/teams-for-linux_2.6.19_amd64.deb
+	https://download.sublimetext.com/sublime-text_build-4200_amd64.deb
+)
+sha256sums=(
+	8fd7838197cff488ba0775e12d817ab7aa19abccd64699744e49b81ae0833ca1
+	7bd5e3079ea968e765dcbb8872941d98f3ae1b953a3ebd947c98ef34e9906ba5
+	01d0088aac26e3815440080078c6d8f3035d420ce7f95eccf0e79f8d9b36d8e8
+	e25882cc0808a81013250359ccaf9dc5719c48b7962780ad93610a9ea806f7e9
+	79a687ffd749004eb4360243dc2133a68bbc8243f890ff3f8f5b00835870c7ea
+)
+
+package() {
+	cp -L *.deb "$PKGDEST/"
+
+	exit 0
+}

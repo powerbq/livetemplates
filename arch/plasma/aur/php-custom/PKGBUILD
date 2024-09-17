@@ -1,0 +1,134 @@
+pkgname=(
+	'php-custom'
+)
+pkgver=8.4.10
+pkgrel=1
+arch=(
+	'x86_64'
+)
+depends=(
+	'oniguruma'
+	'libpng'
+	'libsodium'
+	'libzip'
+	'postgresql-libs'
+)
+conflicts=(
+	'php'
+)
+source=(
+	"https://php.net/distributions/php-${pkgver}.tar.xz"
+)
+sha256sums=(
+	'14983a9ef8800e6bc2d920739fd386054402f7976ca9cd7f711509496f0d2632'
+)
+options=(
+	'!lto'
+	'!debug'
+)
+
+cpucount=$(nproc)
+
+modules() {
+	# composer dependencies
+	echo amqp
+	echo apcu
+	echo ctype
+	echo curl
+	echo dom
+	echo event
+	echo exif
+	echo fileinfo
+	echo gd
+	echo iconv
+	echo intl
+	echo json
+	echo libxml
+	echo mailparse
+	echo mysqli
+	echo openssl
+	echo pdo
+	echo pgsql
+	echo posix
+	echo readline
+	echo redis
+	echo simplexml
+	echo soap
+	echo sqlite3
+	echo zip
+
+	# not listed composer dependency
+	echo ffi
+	echo filter
+	echo pcntl
+	echo phar
+	echo session
+	echo sysvsem
+	echo tokenizer
+	echo xml
+	echo xmlreader
+	echo xmlwriter
+	echo zlib
+
+	# other dependencies
+	echo pdo_mysql
+	echo sodium
+
+	# for pecl modules
+	echo imap-ssl
+	echo kerberos
+	echo mbstring
+	echo sockets
+
+	# for fpm
+	echo fpm
+
+	# for opcache
+	echo opcache
+}
+
+configuration() {
+	for MODULE in $(modules)
+	do
+		echo --enable-$MODULE
+		echo --with-$MODULE
+	done
+
+	echo --prefix=/usr
+	echo --sbindir=/usr/bin
+	echo --sysconfdir=/etc/php
+	echo --mandir=/usr/share/man
+	echo --localstatedir=/var
+	echo --with-config-file-path=/etc/php
+	echo --with-config-file-scan-dir=/etc/php/conf.d
+	echo --with-layout=GNU
+
+	echo --disable-all
+	echo --disable-debug
+	echo --disable-rpath
+}
+
+prepare() {
+	cd "${srcdir}/php-${pkgver}"
+
+	./buildconf
+
+	./configure $(configuration)
+}
+
+build() {
+	cd "${srcdir}/php-${pkgver}"
+
+	make -j ${cpucount}
+}
+
+package() {
+	cd "${srcdir}/php-${pkgver}"
+
+	make -j 1 INSTALL_ROOT="${pkgdir}" install-{cli,modules,build,headers,programs,pharcmd}
+
+	install -D -m644 php.ini-production "${pkgdir}/etc/php/php.ini"
+
+	echo "zend_extension=opcache" | tee opcache.ini
+	install -D -m644 opcache.ini "$pkgdir/etc/php/conf.d/opcache.ini"
+}

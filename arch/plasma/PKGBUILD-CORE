@@ -1,0 +1,14 @@
+# Пакеты для файловых систем
+depends+=(btrfs-progs dosfstools e2fsprogs ntfs-3g squashfs-tools)
+
+# LVM
+depends+=(lvm2)
+
+# Базовые консольные утилиты и оболочки
+depends+=(bash busybox cpio efibootmgr htop jq mc nano pv rsync screen sudo wget xxd)
+
+# Системные службы
+depends+=(openssh openvpn)
+
+# Зависимости для Python
+depends+=(python-pip)

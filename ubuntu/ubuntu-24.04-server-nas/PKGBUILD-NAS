@@ -1,0 +1,7 @@
+# NAS
+depends+=(
+	apcupsd
+	network-manager
+	samba
+	syncthing
+)

@@ -1,0 +1,5 @@
+# Компоненты из группы KDE-GRAPHICS
+depends+=(krita)
+
+# Wayland
+depends+=(plasma-workspace-wayland)

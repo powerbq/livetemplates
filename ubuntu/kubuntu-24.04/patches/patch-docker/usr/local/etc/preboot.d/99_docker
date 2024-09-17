@@ -1,0 +1,5 @@
+#!/bin/sh
+
+adduser $USERNAME docker
+
+exit 0

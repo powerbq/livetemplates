@@ -1,0 +1,49 @@
+pkgname=telegram-desktop
+pkgver=6.3.9
+pkgrel=1
+arch=(any)
+
+pkgdesc="Official Telegram Desktop client"
+
+source=(
+	control
+	launcher
+	launcher.desktop
+	launcher.png
+	https://td.telegram.org/tlinux/tsetup.$pkgver.tar.xz
+)
+sha256sums=(
+	e1c8802e60589fd47c32b43794b787f6c860cb8d55babe5a1f75678670671fbd
+	67a6de4a7245179cfccc371c0ec5f1ab2be023eedd02b08d31ffe387bcce8dd0
+	13296a180b920ee02584a9c0d68438e36048cae46c699f7ef665a4cc2172904c
+	3fb1400c7dc9bbc3b5cb3ffedcbf4a9b09c53e28b57a7ff33a8a6b9048864090
+	fac66fcfae396aa67469ae1989f6cf132ac36261dea01ae14ab7031383710fb0
+)
+
+latestver() {
+	curl -s -D - https://telegram.org/dl/desktop/linux | grep -P '^location: ' | awk -F 'location: ' '{print $2}' | tr -d '\r\n' | xargs -rn1 basename | sed -r 's/^tsetup\.(.*)\.tar\.xz$/\1/'
+}
+
+build() {
+	echo "package version: $pkgver"
+	echo "latest version: $(latestver)"
+}
+
+package() {
+	mkdir -m 755 -p "$pkgdir/usr/share/$pkgname"
+	install -D -m755 "$srcdir/Telegram/Telegram" "$pkgdir/usr/share/$pkgname/Telegram"
+	install -D -m755 "$srcdir/Telegram/Updater" "$pkgdir/usr/share/$pkgname/Updater"
+
+	mkdir -m 755 -p "$pkgdir/usr/bin"
+	install -D -m755 "$srcdir/launcher" "$pkgdir/usr/bin/$pkgname"
+
+	mkdir -m 755 -p "$pkgdir/usr/share/applications"
+	install -D -m644 "$srcdir/launcher.desktop" "$pkgdir/usr/share/applications/$pkgname.desktop"
+
+	mkdir -m 755 -p "$pkgdir/usr/share/pixmaps"
+	install -D -m644 "$srcdir/launcher.png" "$pkgdir/usr/share/pixmaps/$pkgname.png"
+
+	makedeb
+}
+
+source ../func

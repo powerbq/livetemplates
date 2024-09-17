@@ -1,0 +1,31 @@
+pkgname=aws-cli-v2
+pkgver=2.32.26
+pkgrel=1
+arch=(any)
+
+pkgdesc="The AWS Command Line Interface"
+
+source=(
+	control
+	https://awscli.amazonaws.com/awscli-exe-linux-x86_64-$pkgver.zip
+)
+sha256sums=(
+	e1c8802e60589fd47c32b43794b787f6c860cb8d55babe5a1f75678670671fbd
+	352e235712aa51e7eb6c05f501fbeb5eaf8932447700cb03ae15799bde20aa8e
+)
+
+package() {
+	#"$srcdir/aws/install" -i "$pkgdir/usr/share/aws-cli" -b "$pkgdir/usr/bin"
+
+	mkdir -m 755 -p "$pkgdir/usr/bin"
+	mkdir -m 755 -p "$pkgdir/usr/share/aws-cli/v2"
+
+	cp -a "$srcdir/aws/dist" "$pkgdir/usr/share/aws-cli/v2/$pkgver"
+
+	ln -s ../share/aws-cli/v2/$pkgver/aws           "$pkgdir/usr/bin/aws"
+	ln -s ../share/aws-cli/v2/$pkgver/aws_completer "$pkgdir/usr/bin/aws_completer"
+
+	makedeb
+}
+
+source ../func
