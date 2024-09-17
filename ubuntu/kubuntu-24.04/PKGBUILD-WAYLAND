@@ -1,0 +1,4 @@
+
+# Wayland
+depends+=(plasma-workspace-wayland)
+depends+=(libinput-tools)

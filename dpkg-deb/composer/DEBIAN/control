@@ -1,0 +1,5 @@
+Package: composer
+Version: 2.7.9
+Maintainer: Kyrylo Baryshev
+Architecture: amd64
+Description: Composer
