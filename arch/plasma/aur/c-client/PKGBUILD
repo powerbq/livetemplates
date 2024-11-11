@@ -11,8 +11,8 @@ source=(
 	'c-client-dev.deb::http://mirrors.kernel.org/ubuntu/pool/universe/u/uw-imap/libc-client2007e-dev_2007f~dfsg-7build3_amd64.deb'
 )
 sha256sums=(
-	'SKIP'
-	'SKIP'
+	'3ddfe924c8462a40bbd1f23579a14d91118310ec0b4585effa58c272bbdd7ef3'
+	'bf2e73908d7b6600c3d8079dc4194cd570aec3819356c8bfc120d88969acc212'
 )
 
 prepare() {

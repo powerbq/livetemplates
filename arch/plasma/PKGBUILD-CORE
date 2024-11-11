@@ -1,6 +1,3 @@
-# Ядро и заголовки, прошивки
-depends+=(linux-firmware)
-
 # Пакеты для файловых систем
 depends+=(btrfs-progs cifs-utils dosfstools e2fsprogs exfat-utils ntfs-3g squashfs-tools)
 

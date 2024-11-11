@@ -1,6 +1,3 @@
-# Компоненты MATE
-depends+=(mate-system-monitor)
-
 # Компоненты PLASMA
 depends+=(plasma kde-system kde-utilities)
 

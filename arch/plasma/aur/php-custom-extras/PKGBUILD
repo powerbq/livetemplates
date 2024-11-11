@@ -7,14 +7,14 @@ arch=(
 	'x86_64'
 )
 depends=(
-	'php-custom'
-
 	'librabbitmq-c'
+	'php-custom'
 )
 makedepends=(
 )
 options=(
-	'!emptydirs'
+	'!lto'
+	'!debug'
 )
 
 cpucount=$(nproc)
@@ -96,7 +96,7 @@ package() {
 	do
 		cd "${srcdir}/${PECLMODULE}"
 
-		make INSTALL_ROOT=$pkgdir install
+		make INSTALL_ROOT="${pkgdir}" install
 
 		install -Dm 644 php.ini "$pkgdir/etc/php/conf.d/${PECLMODULE}.ini"
 
