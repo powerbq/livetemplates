@@ -29,16 +29,13 @@ depends+=(pavucontrol-qt)
 depends+=(elisa vlc)
 
 # Студия
-depends+=(audacity blender gimp pinta shotcut)
+depends+=(audacity blender gimp obs-studio pinta shotcut)
 
 # Интернет пакеты
-depends+=(chromium firefox firefox-ublock-origin filezilla qbittorrent thunderbird telegram-desktop torbrowser-launcher)
+depends+=(chromium discord firefox firefox-ublock-origin filezilla qbittorrent thunderbird telegram-desktop torbrowser-launcher)
 
 # Офисные программы
 depends+=(libreoffice-fresh)
-
-# Терминал
-depends+=(terminator)
 
 # Другие программы
 depends+=(geany gparted keepassxc)
