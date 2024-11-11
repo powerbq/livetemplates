@@ -18,7 +18,7 @@ process_start() {
 
 	if test -d build/$1
 	then
-		sudo find build/$1 -mindepth 1 -maxdepth 1 ! -name 'pkg-*' ! -name 'src-*' -exec rm -Rf {} \;
+		sudo find build/$1 -mindepth 1 -maxdepth 1 ! -name 'pkg*' ! -name 'src*' ! -name 'archlinux-bootstrap-*.tar.*' -exec rm -Rf {} \;
 		sudo mv build/$1 build/$1.bak
 	fi
 
@@ -70,10 +70,11 @@ do
 
 	process_start $TEMPLATE livearch
 
-	docker-compose build 2>&1 | sudo tee out/build-init.log > /dev/null
+	./download.sh
+
+	docker-compose build
 	docker-compose up
-	docker-compose logs --no-color --no-log-prefix livearch-boot 2>&1 | sudo tee out/build-boot.log > /dev/null
-	docker-compose logs --no-color --no-log-prefix livearch-system 2>&1 | sudo tee out/build-system.log > /dev/null
+	docker-compose logs --no-color --no-log-prefix 2>&1 | sudo tee out/build.log > /dev/null
 	docker-compose down
 
 	process_end
@@ -112,4 +113,4 @@ done
 
 sudo umount build
 
-echo Done
+echo "Done $0 $@"
