@@ -15,8 +15,6 @@ apt-get install -y php$PHP_VERSION-fpm
 # for phpstan
 apt-get install -y php$PHP_VERSION-xml
 
-#exit 0
-
 # other
 apt-get install -y php$PHP_VERSION-amqp php$PHP_VERSION-curl php$PHP_VERSION-gd php$PHP_VERSION-imap php$PHP_VERSION-mailparse php$PHP_VERSION-mysqli php$PHP_VERSION-redis php$PHP_VERSION-soap php$PHP_VERSION-sqlite3 php$PHP_VERSION-zip
 
@@ -31,9 +29,6 @@ apt-get install -y php$PHP_VERSION-dev
 
 # apcu
 apt-get install -y php$PHP_VERSION-apcu
-
-# new
-apt-get install -y php$PHP_VERSION-grpc php$PHP_VERSION-protobuf php$PHP_VERSION-opentelemetry
 
 # event
 apt-get install -y libevent-dev

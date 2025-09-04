@@ -1,0 +1,40 @@
+pkgname=webstorm-2021
+pkgver=2021.2.2
+pkgrel=1
+arch=(any)
+
+pkgdesc="The JavaScript and TypeScript IDE"
+
+source=(
+	control
+	https://download.jetbrains.com/webstorm/WebStorm-$pkgver.tar.gz
+)
+sha256sums=(
+	e1c8802e60589fd47c32b43794b787f6c860cb8d55babe5a1f75678670671fbd
+	226d039746ac2a6148e7c7b7b45ae87f0080eb64ede78e85226cd9a43ea67ba8
+)
+
+package() {
+	mkdir -m 755 -p "$pkgdir/usr/share"
+	cp -a "$srcdir/WebStorm-"*'/' "$pkgdir/usr/share/$pkgname/"
+
+	mkdir -m 755 -p "$pkgdir/usr/bin"
+	ln -s ../share/$pkgname/bin/webstorm.sh "$pkgdir/usr/bin/$pkgname"
+
+	mkdir -m 755 -p "$pkgdir/usr/share/applications"
+
+	unzip -qou "$srcdir/WebStorm-"*"/lib/platform-impl.jar" entry.desktop
+	sed -i 's/\$NAME\$/WebStorm 2021/' entry.desktop
+	sed -i "s/\\\$ICON\\\$/$pkgname/" entry.desktop
+	sed -i "s/\\\$SCRIPT\\\$/$pkgname/" entry.desktop
+	sed -i "s/\\\$COMMENT\\\$/$pkgdesc/" entry.desktop
+	sed -i "s/\\\$WM_CLASS\\\$/$pkgname/" entry.desktop
+	install -D -m644 "$srcdir/entry.desktop" "$pkgdir/usr/share/applications/$pkgname.desktop"
+
+	mkdir -m 755 -p "$pkgdir/usr/share/pixmaps"
+	install -D -m644 "$srcdir/WebStorm-"*"/bin/webstorm.svg" "$pkgdir/usr/share/pixmaps/$pkgname.svg"
+
+	makedeb
+}
+
+source ../func

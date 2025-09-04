@@ -1,5 +1,0 @@
-Package: telegram-desktop
-Version: 5.13.0
-Maintainer: Kyrylo Baryshev
-Architecture: amd64
-Description: Telegram desktop client
