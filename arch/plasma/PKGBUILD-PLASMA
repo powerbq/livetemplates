@@ -2,9 +2,4 @@
 depends+=(plasma kde-system kde-utilities)
 
 # Компоненты из группы KDE-GRAPHICS
-depends+=(gwenview okular spectacle)
-depends+=(kdegraphics-thumbnailers)
-
-# Компоненты из группы KDE-MULTIMEDIA
-depends+=(k3b kamoso)
-depends+=(ffmpegthumbs)
+depends+=(gwenview krita okular)

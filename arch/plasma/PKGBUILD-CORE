@@ -1,14 +1,14 @@
 # Пакеты для файловых систем
-depends+=(btrfs-progs cifs-utils dosfstools e2fsprogs exfat-utils ntfs-3g squashfs-tools)
+depends+=(btrfs-progs dosfstools e2fsprogs ntfs-3g squashfs-tools)
 
-# LVM и RAID
-depends+=(lvm2 mdadm)
+# LVM
+depends+=(lvm2)
 
 # Базовые консольные утилиты и оболочки
-depends+=(atop bash busybox chntpw cpio curl debootstrap duperemove efibootmgr git htop iftop iotop iperf jq libisoburn mc mtr nano pv rsync screen sqlite sudo vi wget xxd zsh)
+depends+=(bash busybox cpio efibootmgr htop jq mc nano pv rsync screen sudo wget xxd)
 
 # Системные службы
-depends+=(irqbalance openssh openvpn)
+depends+=(openssh openvpn)
 
 # Зависимости для Python
 depends+=(python-pip)
