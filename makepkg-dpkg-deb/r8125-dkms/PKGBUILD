@@ -1,0 +1,38 @@
+# based on https://aur.archlinux.org/packages/r8125-dkms
+
+_pkgname=r8125
+pkgname=${_pkgname}-dkms
+pkgver=9.016.01
+pkgrel=1
+arch=(any)
+
+pkgdesc="Kernel module for RTL8125"
+
+source=(
+	https://github.com/aravance/${_pkgname}/archive/refs/tags/${pkgver}.tar.gz
+	dkms.conf
+	control
+	postinst
+	prerm
+)
+sha256sums=(
+	7536212fc5ba0b62ff19662bddeda52ed8eac5bac1d6f18cc192f6191fedc6f0
+	ad4c67e0c74661d19b74872f98254184d4b04e32e4c57b338a84fbcefa4c721f
+	cc62a9e2d55c4e60fc9b08714232beb1e1f2c9a7c7cdd53618ecf65aebeaed63
+	fd02c271e507dcd61ac86e961c10137febab67ab4ca4ff22597437c82328d601
+	94b93a7178e7ba9d17b04527f3422ee198289a33e2d931f71dd814230d7a3b1b
+)
+
+package() {
+	dir_name="${_pkgname}-${pkgver}"
+	install -d "${pkgdir}"/usr/src/${dir_name}/
+	install -Dm644 dkms.conf "${dir_name}"/src/* "${pkgdir}/usr/src/${dir_name}/"
+
+	sed	-e "s/@_PKGNAME@/${_pkgname}/g" \
+		-e "s/@PKGVER@/${pkgver}/g" \
+		-i "${pkgdir}/usr/src/${dir_name}/dkms.conf"
+
+	makedeb
+}
+
+source ../func

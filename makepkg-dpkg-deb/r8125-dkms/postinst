@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -e
+
+DRIVER_VERSION=$(dpkg -s $DPKG_MAINTSCRIPT_PACKAGE | sed -n 's/^Version: //p')
+
+dkms add     -m r8125 -v $DRIVER_VERSION
+dkms install -m r8125 -v $DRIVER_VERSION
+
+exit 0

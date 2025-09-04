@@ -1,0 +1,4 @@
+# Dev and Support
+depends+=(ansible)
+depends+=(npm)
+depends+=(python3-venv)

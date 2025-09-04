@@ -1,3 +1,0 @@
-
-# VMWARE
-depends+=(imwheel open-vm-tools)
