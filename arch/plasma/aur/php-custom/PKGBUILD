@@ -7,12 +7,10 @@ arch=(
 	'x86_64'
 )
 depends=(
-)
-makedepends=(
+	'oniguruma'
 	'libpng'
 	'libsodium'
 	'libzip'
-	'oniguruma'
 )
 conflicts=(
 	'php'
@@ -21,7 +19,7 @@ source=(
 	"https://php.net/distributions/php-${pkgver}.tar.xz"
 )
 sha256sums=(
-	'a0f2179d00931fe7631a12cbc3428f898ca3d99fe564260c115af381d2a1978d'
+	'a0f2179d00931fe7631a12cbc3428f898ca3d99fe564260c115af381d2a1978d' # '14983a9ef8800e6bc2d920739fd386054402f7976ca9cd7f711509496f0d2632'
 )
 options=(
 	'!lto'
@@ -83,6 +81,9 @@ modules() {
 
 	# for fpm
 	echo fpm
+
+	# for opcache
+	echo opcache
 }
 
 configuration() {
@@ -123,7 +124,10 @@ build() {
 package() {
 	cd "${srcdir}/php-${pkgver}"
 
-	make -j 1 INSTALL_ROOT="${pkgdir}" install-{cli,build,headers,programs,pharcmd}
+	make -j 1 INSTALL_ROOT="${pkgdir}" install-{cli,modules,build,headers,programs,pharcmd}
 
 	install -D -m644 php.ini-production "${pkgdir}/etc/php/php.ini"
+
+	echo "zend_extension=opcache" | tee opcache.ini
+	install -D -m644 opcache.ini "$pkgdir/etc/php/conf.d/opcache.ini"
 }

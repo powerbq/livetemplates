@@ -1,0 +1,2 @@
+# RTX 2070
+depends+=(nvidia-driver-580-open)

@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -e
+
+DRIVER_VERSION=$(dpkg -s $DPKG_MAINTSCRIPT_PACKAGE | sed -n 's/^Version: //p')
+
+dkms remove r8125/$DRIVER_VERSION --all
+
+exit 0
