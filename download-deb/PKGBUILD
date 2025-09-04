@@ -1,0 +1,21 @@
+pkgname=download
+pkgver=1
+pkgrel=1
+arch=(any)
+
+source=(
+	https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_139.0.7258.138-1_amd64.deb
+	https://downloads.slack-edge.com/desktop-releases/linux/x64/4.39.95/slack-desktop-4.39.95-amd64.deb
+	https://github.com/symfony-cli/symfony-cli/releases/download/v5.12.0/symfony-cli_5.12.0_amd64.deb
+	https://github.com/IsmaelMartinez/teams-for-linux/releases/download/v2.5.1/teams-for-linux_2.5.1_amd64.deb
+)
+sha256sums=(
+	3edc53950860ac6abf7b593f53557ff7368df5ab69835af4ab0a7a960b7268ea
+	d6ac62065e06af008fd8cccf80b7248b839320b508b8e7153d45ba31b7ada419
+	75f0ba55610053d730f19dd918b05c0fc787f981ccbabcbd074d12cf7ee413ea
+	fa9bac7f55ee8a2eb91e88c1cc9b54e851c2e47ff87d26456e77fe7a86232ae6
+)
+
+prepare() {
+	find . -mindepth 1 -maxdepth 1 ! -name '*.deb' -delete
+}
